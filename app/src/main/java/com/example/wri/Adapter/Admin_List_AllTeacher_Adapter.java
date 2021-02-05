@@ -42,7 +42,7 @@ public class Admin_List_AllTeacher_Adapter extends RecyclerView.Adapter<Admin_Li
         Teacher teacher = teacherArrayList.get(position);
         holder.txtnameTeacher.setText(teacher.getNameTeacher());
         holder.txtcodeTeacher.setText(teacher.getCodeTeacher());
-        Picasso.get().load(teacher.getThumbnailTeacher()).into(holder.thumbnailTeacher);
+        Picasso.with(context).load(teacher.getThumbnailTeacher()).into(holder.thumbnailTeacher);
     }
 
     @Override

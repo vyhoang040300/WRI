@@ -261,7 +261,9 @@ public interface DataService {
     @FormUrlEncoded
     @POST("company/search_MajorStudent.php")
     Call<List<Students>> searchStudent_Of_Major(
-            @Field("idgmajor") String idgmajor
+            @Field("idgmajor") String idgmajor,
+            @Field("keyword") String keyword
+
     );
 
 

@@ -129,7 +129,7 @@ public class Fragment_Detail_Inf_Student  extends Fragment {
                 tv_major_detailstudentf.setText(students.getMajor());
                 tv_email_detailstudentf.setText(students.getEmailUser());
                 tv_phone_detailstudentf.setText(students.getPhoneUser());
-                Picasso.get().load(students.getThumbnailStudent()).into(civProfile);
+                Picasso.with(getContext()).load(students.getThumbnailStudent()).into(civProfile);
             }
 
             @Override

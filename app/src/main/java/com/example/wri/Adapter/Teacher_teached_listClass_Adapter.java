@@ -42,7 +42,7 @@ public class Teacher_teached_listClass_Adapter extends RecyclerView.Adapter<Teac
         holder.txtnameclass.setText(classs.getNameClass());
         holder.txtcurrentStudentclass.setText(classs.getCurrentStudentClass());
         holder.txtmaxStudentClass.setText(classs.getMaxStudentClass());
-        Picasso.get().load(classs.getThumbnailClass()).into(holder.thumbnailClass);
+        Picasso.with(context).load(classs.getThumbnailClass()).into(holder.thumbnailClass);
     }
 
     @Override

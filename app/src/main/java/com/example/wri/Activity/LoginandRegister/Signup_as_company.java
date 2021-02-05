@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,11 +19,23 @@ import com.example.wri.Service.APIService;
 import com.example.wri.Service.DataService;
 
 
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Signup_as_company extends AppCompatActivity {
+        private static  Pattern PASSWORD_PATTEN =
+            Pattern.compile("^" +
+                    "(?=.*[0-9])" +         //Ít nhất một chữ số
+                    "(?=.*[a-z])" +         //Ít nhất một chữ thường
+                    //"(?=.*[a-zA-Z])" +      //Any letter
+                    "(?=.*[A-Z])" +         //Ít nhất một chữ hoa
+                    "(?=.*[@#$%^&*=])" +    //Ít nhất một kí tự đặc biệt
+                    "(?=\\S+$)" +           //Không được có khoảng trắng
+                    ".{6,}" +               //Có ít nhất 6 kí tự
+                    "$");
     Button btn_return_signup_company;
     Button btn_signup_company;
     ImageView img_signup_as_company;
@@ -68,19 +81,32 @@ public class Signup_as_company extends AppCompatActivity {
         final String   phonenumber = phonenumber_company_signup.getText().toString().trim();
         final String address = address_company_signup.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
-            name_company_signup.setError("Tên Không được để trống");
+            name_company_signup.setError("Tên công ty Không được để trống");
             return;
         }else
         if (TextUtils.isEmpty(email)) {
-            email_company_signup.setError("Tên Không được để trống");
+            email_company_signup.setError("Email Không được để trống");
             return;
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            email_company_signup.setError("Vui lòng nhập đúng định dạng email");
         }else
         if (TextUtils.isEmpty(password)) {
             pass_company_signup.setError("Mật khẩu không được để trống");
             return;
-        }else
-        if (password.length() < 6 || password.length() > 24) {
-            pass_company_signup.setError("Mật khẩu độ dài từ 6 đến 24 ký tự");
+        }
+//        else
+//        if (password.length() < 6 || password.length() > 24) {
+//            pass_company_signup.setError("Mật khẩu độ dài từ 6 đến 24 ký tự");
+//            return;
+//        }
+        else if (!PASSWORD_PATTEN.matcher(password).matches()) {
+            pass_company_signup.setError("Mật khẩu phải có: \n" +
+                    "- Ít nhất một chữ số \n" +
+                    "- Ít nhất một chữ thường \n" +
+                    "- Ít nhất một chữ hoa \n" +
+                    "- Ít nhất một kí tự đặc biệt \n" +
+                    "- Không được có khoảng trắng \n" +
+                    "- Ít nhất 6 kí tự");
             return;
         }
         else
@@ -95,7 +121,7 @@ public class Signup_as_company extends AppCompatActivity {
             phonenumber_company_signup.setError("Bạn cần nhập số điện thoại");
             return;
         }else if(TextUtils.isEmpty(address)){
-            address_company_signup.setError("Bạn cần nhập số địa chỉ");
+            address_company_signup.setError("Bạn cần nhập địa chỉ");
             return;
         }else {
             DataService dataService = APIService.getService();
@@ -120,7 +146,7 @@ public class Signup_as_company extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Companys> call, Throwable t) {
-                    Toast.makeText(Signup_as_company.this, "Đăng kí thất bại t", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Signup_as_company.this, "Đăng kí thất bại", Toast.LENGTH_SHORT).show();
                 }
             });
         }

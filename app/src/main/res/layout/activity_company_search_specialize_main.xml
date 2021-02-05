@@ -70,6 +70,7 @@
                 android:textColor="#000"
                 android:hint="Tìm kiếm ..."
                 android:inputType="text"
+                android:drawableRight="@drawable/ic_search"
                 />
             <ImageView
                 android:layout_weight="1"

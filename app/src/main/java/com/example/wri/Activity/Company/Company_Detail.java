@@ -81,7 +81,7 @@ public class Company_Detail extends AppCompatActivity {
         edt_company_email.setText(emailUser);
         edt_company_phone.setText(phoneNumber);
 
-        Picasso.get().load(thumbnailCompany).into(img_avatar_company);
+        Picasso.with(getApplicationContext()).load(thumbnailCompany).into(img_avatar_company);
 
         progressDialog = new ProgressDialog(Company_Detail.this);
         progressDialog.setMessage("Uploading Image. Please wait");

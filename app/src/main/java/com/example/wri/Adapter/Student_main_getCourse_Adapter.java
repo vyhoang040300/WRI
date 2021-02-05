@@ -45,7 +45,7 @@ public class Student_main_getCourse_Adapter extends RecyclerView.Adapter<Student
         Classs classs = classsArrayList.get(position);
         // holder.txtnamecategory.setText(category.getCategorytitle());
         holder.txtnameclass.setText(classs.getNameClass());
-        Picasso.get().load(classs.getThumbnailClass()).into(holder.thumbnailClass);
+        Picasso.with(context).load(classs.getThumbnailClass()).into(holder.thumbnailClass);
     }
 
     @Override

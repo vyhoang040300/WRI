@@ -89,10 +89,10 @@ public class Company_Search_Specialize_Main extends AppCompatActivity {
                 majorItemList = new ArrayList<>();
                 majorItemList = (ArrayList<MajorItem>) response.body();
                 majorAdapter = new searchMajor_Company_Adapter(Company_Search_Specialize_Main.this, majorItemList);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Company_Search_Specialize_Main.this);
-                linearLayoutManager.setReverseLayout(true);
-                linearLayoutManager.setStackFromEnd(true);
-                rcv_majorCom.setLayoutManager(linearLayoutManager);
+//                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Company_Search_Specialize_Main.this);
+//                linearLayoutManager.setReverseLayout(true);
+//                linearLayoutManager.setStackFromEnd(true);
+                rcv_majorCom.setLayoutManager(new LinearLayoutManager(Company_Search_Specialize_Main.this, LinearLayoutManager.VERTICAL,false));
                 rcv_majorCom.setAdapter(majorAdapter);
 
 

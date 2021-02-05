@@ -50,7 +50,7 @@ public class Admin_addTeacherClass_Adapter extends RecyclerView.Adapter<Admin_ad
                 checkboxTeacher.setSelected(cb.isChecked());
             }
         });
-        Picasso.get().load(teacher.getThumbnailTeacher()).into(holder.img);
+        Picasso.with(context).load(teacher.getThumbnailTeacher()).into(holder.img);
     }
 
     @Override

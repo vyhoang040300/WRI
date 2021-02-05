@@ -45,7 +45,7 @@ public class Adapter_Joined_Classes extends RecyclerView.Adapter<Adapter_Joined_
 //        Uri uri_thumbnailJoinedClass=Uri.parse(classs.getThumbnailClass());
         holder.tv_nameJoinedClass.setText(classs.getNameClass());
         holder.tv_maxStudentJoinedClass.setText(classs.getCurrentStudentClass() + "/" + classs.getMaxStudentClass());
-        Picasso.get().load(classs.getThumbnailClass()).into(holder.imgv_thumbnailJoinedClass);
+        Picasso.with(context).load(classs.getThumbnailClass()).into(holder.imgv_thumbnailJoinedClass);
     }
 
     @Override

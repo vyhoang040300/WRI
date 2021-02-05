@@ -22,8 +22,9 @@ public class SearchStudent_Of_Major_Company_Adapter extends RecyclerView.Adapter
     private List<Students> studentsMajorList;
     private List<Students> studentsMahjorListFull;
     public SearchStudent_Of_Major_Company_Adapter(Context context, List<Students> studentsMajorList){
+        this.context = context;
         this.studentsMajorList = studentsMajorList;
-        studentsMahjorListFull = new ArrayList<>(studentsMajorList);
+//        studentsMahjorListFull = new ArrayList<>(studentsMahjorListFull);
     }
     @NonNull
     @Override
@@ -35,10 +36,10 @@ public class SearchStudent_Of_Major_Company_Adapter extends RecyclerView.Adapter
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Students students = studentsMajorList.get(position);
-        holder.txtStudent_special_Company.setText(students.getMajor());
-        holder.txtNamestudent_special_com.setText(students.getNameStudent());
+        holder.txtStudent_special_Company.setText("Chuyên ngành: "+students.getMajor());
+        holder.txtNamestudent_special_com.setText("Tên ứng viên: "+students.getNameStudent());
         holder.txt_mhv_special_com.setText(students.getCodeStudent());
-        Picasso.get().load(students.getThumbnailStudent()).into(holder.imv_Avatar_Studen_special_Com);
+        Picasso.with(context).load(students.getThumbnailStudent()).into(holder.imv_Avatar_Studen_special_Com);
 
     }
 

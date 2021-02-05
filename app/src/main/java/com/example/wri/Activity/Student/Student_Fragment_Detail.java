@@ -121,7 +121,7 @@ public class Student_Fragment_Detail extends Fragment {
 //                Uri thumbnailURI = Uri.parse("file:///data/data/com.example.wri/cache/" + strURLthumbnail);
 
 //                imgv_avatarStudent.setImageURI(thumbnailURI);
-                Picasso.get().load(thumbnailStu).into(imgv_avatarStudent);
+                Picasso.with(getContext()).load(thumbnailStu).into(imgv_avatarStudent);
                 tv_nameStudent.setText("Họ và tên: " + nameStu);
                 if(codeStu == null){
                     tv_codeStudent.setText("Mã học viên: Chưa có");

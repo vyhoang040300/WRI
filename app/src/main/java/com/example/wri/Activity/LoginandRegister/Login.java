@@ -71,10 +71,10 @@ public class Login extends AppCompatActivity {
             email_login.setError("Email Không được để trống");
             return;
         }
-//        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            email_login.setError("Vui lòng nhập đúng định dạng địa chỉ email");
-//            return;
-//        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            email_login.setError("Vui lòng nhập đúng định dạng địa chỉ email");
+            return;
+        }
         else if (password.isEmpty()) {
             password_login.setError("Password Không được để trống");
             return;

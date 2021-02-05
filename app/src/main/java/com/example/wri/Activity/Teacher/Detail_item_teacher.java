@@ -134,7 +134,7 @@ public class Detail_item_teacher extends AppCompatActivity {
                 tv_codeteacher_detailteacher_teacher.setText(codeteacher);
                 tv_phone_detailteacher_teacher.setText(phoneUser);
                 tv_description_detailteacher_teacher.setText(descriptionTeacher);
-                Picasso.get().load(response.body().get(0).getThumbnailTeacher()).into(civProfile);
+                Picasso.with(getApplicationContext()).load(response.body().get(0).getThumbnailTeacher()).into(civProfile);
             }
 
             @Override

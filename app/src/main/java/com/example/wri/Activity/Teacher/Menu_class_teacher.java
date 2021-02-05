@@ -72,7 +72,7 @@ public class Menu_class_teacher extends AppCompatActivity {
                 maxstudent_class_detailclass_teacher.setText("Học viên tối đa: "+classs.getMaxStudentClass());
                 opening_class_detailclass_teacher.setText("Ngày mở lớp: "+ classs.getOpeningClass());
                 description_class_detailclass_teacher.setText("Mô tả: \n"+classs.getDecriptionClass());
-                Picasso.get().load(classs.getThumbnailClass()).into(thumbnail_class_detailclass_teacher);
+                Picasso.with(getApplicationContext()).load(classs.getThumbnailClass()).into(thumbnail_class_detailclass_teacher);
             }
             @Override
             public void onFailure(Call<List<Classs>> call, Throwable t) {

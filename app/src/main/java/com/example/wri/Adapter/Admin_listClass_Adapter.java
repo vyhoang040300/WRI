@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wri.Activity.Admin.Class.Admin_Detail_Class;
 import com.example.wri.Activity.Admin.Class.Admin_Edit_Class;
 import com.example.wri.Model.Classs;
+import com.example.wri.Model.MajorItem;
 import com.example.wri.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Admin_listClass_Adapter extends RecyclerView.Adapter<Admin_listClass_Adapter.ViewHolder>{
+public class Admin_listClass_Adapter extends RecyclerView.Adapter<Admin_listClass_Adapter.ViewHolder> implements Filterable {
     Context context;
     ArrayList<Classs> classsArrayList;
 
@@ -43,13 +47,14 @@ public class Admin_listClass_Adapter extends RecyclerView.Adapter<Admin_listClas
         holder.txtnameclass.setText(classs.getNameClass());
         holder.txtcurrentStudentclass.setText(classs.getCurrentStudentClass());
         holder.txtmaxStudentClass.setText(classs.getMaxStudentClass());
-        Picasso.get().load(classs.getThumbnailClass()).into(holder.thumbnailClass);
+        Picasso.with(context).load(classs.getThumbnailClass()).into(holder.thumbnailClass);
     }
 
     @Override
     public int getItemCount() {
         return classsArrayList.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtnameclass,txtcurrentStudentclass,txtmaxStudentClass;
@@ -70,5 +75,35 @@ public class Admin_listClass_Adapter extends RecyclerView.Adapter<Admin_listClas
             });
         }
     }
+    @Override
+    public Filter getFilter() {
+        return classFilter;
+    }
+    private Filter classFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Classs> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(classsArrayList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Classs item : classsArrayList) {
+                    if (item.getCodeClass().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            classsArrayList.clear();
+            classsArrayList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
 

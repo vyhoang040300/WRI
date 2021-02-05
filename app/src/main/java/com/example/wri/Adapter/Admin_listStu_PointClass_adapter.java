@@ -44,7 +44,7 @@ public class Admin_listStu_PointClass_adapter extends RecyclerView.Adapter<Admin
         // holder.txtnamecategory.setText(category.getCategorytitle());
         holder.txtnameStu.setText(students.getNameStudent());
         holder.txtcodeStu.setText(students.getCodeStudent());
-        Picasso.get().load(students.getThumbnailStudent()).into(holder.thumbnailStu);
+        Picasso.with(context).load(students.getThumbnailStudent()).into(holder.thumbnailStu);
     }
 
     @Override

@@ -97,7 +97,7 @@ public class Student_Fragment_Course_Detail extends Fragment {
         callback.enqueue(new Callback<List<Classs>>() {
             @Override
             public void onResponse(Call<List<Classs>> call, Response<List<Classs>> response) {
-                Picasso.get().load(response.body().get(0).getThumbnailClass()).into(imgv_thumbnailClass);
+                Picasso.with(getContext()).load(response.body().get(0).getThumbnailClass()).into(imgv_thumbnailClass);
                 tv_nameClass.setText(response.body().get(0).getNameClass());
                 tv_codeClass.setText(response.body().get(0).getCodeClass());
                 tv_currentStu.setText(response.body().get(0).getCurrentStudentClass());

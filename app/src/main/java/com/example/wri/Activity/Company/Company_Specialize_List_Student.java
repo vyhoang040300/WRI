@@ -15,7 +15,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.example.wri.Activity.Admin.Class.Admin_List_Class;
 import com.example.wri.Adapter.SearchStudent_Of_Major_Company_Adapter;
 import com.example.wri.Model.Classs;
 import com.example.wri.Model.MajorItem;
@@ -32,23 +34,34 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Company_Specialize_List_Student extends AppCompatActivity {
-    Context context;
+
     SearchStudent_Of_Major_Company_Adapter majorStudent_Adapter;
     ImageView imv_Back_List_StudentOfMajor, imv_Search_StudenstOfMajor;
     RecyclerView rcv_student_ofMajor;
+    TextView tv_KhoaNganh;
     EditText edt_Seach_StudentOfMajor;
     ArrayList<Students> studentsArrayList;
-    String key;
+    String keyword,idmajor;
     MajorItem majorItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_specialize__list__student);
-        key = majorItem.getId();
+
+
         init();
         DataIntent();
-        Getdata(key);
-        Log.d("nnn",key);
+       Log.d("idgroup",majorItem.getId());
+        //sử dụng hàm tìm kiếm giống như bản trước
+        keyword = "";
+        Getdata(majorItem.getId(),keyword);
+        tv_KhoaNganh.setText(majorItem.getNamegmajor());
+        imv_Back_List_StudentOfMajor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBack(v);
+            }
+        });
         edt_Seach_StudentOfMajor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,19 +83,16 @@ public class Company_Specialize_List_Student extends AppCompatActivity {
 
     }
 
-    private void Getdata(String idgmajor) {
+    private void Getdata(String idgmajor, String keyword) {
         DataService dataService = APIService.getService();
-        Call<List<Students>> callback = dataService.searchStudent_Of_Major(idgmajor);
+        Call<List<Students>> callback = dataService.searchStudent_Of_Major(idgmajor,keyword);
         callback.enqueue(new Callback<List<Students>>() {
             @Override
             public void onResponse(Call<List<Students>> call, Response<List<Students>> response) {
                 studentsArrayList = new ArrayList<>();
                 studentsArrayList = (ArrayList<Students>) response.body();
-                majorStudent_Adapter = new SearchStudent_Of_Major_Company_Adapter(context, studentsArrayList);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-                linearLayoutManager.setReverseLayout(true);
-                linearLayoutManager.setStackFromEnd(true);
-                rcv_student_ofMajor.setLayoutManager(linearLayoutManager);
+                majorStudent_Adapter = new SearchStudent_Of_Major_Company_Adapter(getApplicationContext(), studentsArrayList);
+                rcv_student_ofMajor.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
                 rcv_student_ofMajor.setAdapter(majorStudent_Adapter);
             }
 
@@ -98,15 +108,10 @@ public class Company_Specialize_List_Student extends AppCompatActivity {
         imv_Search_StudenstOfMajor = findViewById(R.id.img_search_student_of_major);
         edt_Seach_StudentOfMajor = findViewById(R.id.edt_search_student_of_major);
         rcv_student_ofMajor = findViewById(R.id.rcv_list_student_of_major);
+        tv_KhoaNganh = findViewById(R.id.txtKhoaNganh);
 
     }
-//    private void DataIntent(){
-//        Intent intent = getIntent();
-//        Bundle bundle = intent.getExtras();
-//        if (bundle != null){
-//            String newString = (String) bundle.get("gmajor_id");
-//        }
-//    }
+
     private  void DataIntent(){
         Intent intent = getIntent();
         if(intent != null){
@@ -120,7 +125,7 @@ public class Company_Specialize_List_Student extends AppCompatActivity {
     }
     @Override
     protected void onResume() {
-        Getdata(key);
+        Getdata("idgmajor",keyword);
         super.onResume();
     }
 

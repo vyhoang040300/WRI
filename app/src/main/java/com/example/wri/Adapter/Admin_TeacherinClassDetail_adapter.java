@@ -36,7 +36,7 @@ public class Admin_TeacherinClassDetail_adapter extends RecyclerView.Adapter<Adm
     @Override
     public void onBindViewHolder(@NonNull Admin_TeacherinClassDetail_adapter.ViewHolder holder, int position) {
         Teacher teacher = teachersArrayList.get(position);
-        Picasso.get().load(teacher.getThumbnailTeacher()).into(holder.thumbnailTeacher);
+        Picasso.with(context).load(teacher.getThumbnailTeacher()).into(holder.thumbnailTeacher);
     }
 
     @Override

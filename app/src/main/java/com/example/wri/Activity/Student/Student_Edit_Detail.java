@@ -230,7 +230,7 @@ public class Student_Edit_Detail extends AppCompatActivity {
 //                strURLthumbnail=thumbnailStu.substring(thumbnailStu.indexOf("cropped"),thumbnailStu.length());
 //                Uri thumbnailURI=Uri.parse("file:///data/data/com.example.wri/cache/"+strURLthumbnail);
 
-                Picasso.get().load(thumbnailStu).into(imgvAvatarStu);
+                Picasso.with(getApplicationContext()).load(thumbnailStu).into(imgvAvatarStu);
                 edt_nameStu.setText(nameStu);
                 edt_codeStu.setText(codeStu);
                 edt_birthdayStu.setText(birthdayStu);

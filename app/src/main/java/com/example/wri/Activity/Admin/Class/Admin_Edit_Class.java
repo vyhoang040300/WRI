@@ -74,7 +74,7 @@ public class Admin_Edit_Class extends AppCompatActivity {
         edt_opening_class_editclass_admin.setText(openingclass);
         edt_description_class_editclass_admin.setText(decriptionclass);
         id_class_editclass_admin.setText(id);
-        Picasso.get().load(thumbnailclass).into(civProfile);
+        Picasso.with(getApplicationContext()).load(thumbnailclass).into(civProfile);
 
         //
         progressDialog = new ProgressDialog(Admin_Edit_Class.this);

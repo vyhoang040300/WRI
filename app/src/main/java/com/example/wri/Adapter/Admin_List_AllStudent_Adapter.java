@@ -41,7 +41,7 @@ public class Admin_List_AllStudent_Adapter extends RecyclerView.Adapter<Admin_Li
         // holder.txtnamecategory.setText(category.getCategorytitle());
         holder.txtnameStu.setText(students.getNameStudent());
         holder.txtcodeStu.setText(students.getCodeStudent());
-        Picasso.get().load(students.getThumbnailStudent()).into(holder.thumbnailStu);
+        Picasso.with(context).load(students.getThumbnailStudent()).into(holder.thumbnailStu);
     }
 
     @Override

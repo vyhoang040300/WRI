@@ -26,24 +26,6 @@ public class searchMajor_Company_Adapter extends RecyclerView.Adapter<searchMajo
     private List<MajorItem> majorListFull;
     private Context context;
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtmajor;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            txtmajor = itemView.findViewById(R.id.special_item_tv);
-
-            txtmajor.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(context, Company_Specialize_List_Student.class);
-                    String strName = null;
-                    i.putExtra("gmajor_id",strName);
-                    context.startActivity(i);
-                }
-            });
-        }
-    }
-
     public searchMajor_Company_Adapter(Context context, List<MajorItem> majorList){
         this.context = context;
         this.majorList = majorList;
@@ -62,6 +44,7 @@ public class searchMajor_Company_Adapter extends RecyclerView.Adapter<searchMajo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MajorItem majorItem = majorList.get(position);
         holder.txtmajor.setText(majorItem.getNamegmajor());
+
     }
 
     @Override
@@ -100,6 +83,23 @@ public class searchMajor_Company_Adapter extends RecyclerView.Adapter<searchMajo
 
         }
     };
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView txtmajor;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtmajor = itemView.findViewById(R.id.special_item_tv);
+
+            txtmajor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, Company_Specialize_List_Student.class);
+                  // truyền thông số id theo vị trí của nó trên list đddax tạo
+                    i.putExtra("gmajor_id",majorList.get(getPosition()));
+                    context.startActivity(i);
+                }
+            });
+        }
+    }
 
 }
 

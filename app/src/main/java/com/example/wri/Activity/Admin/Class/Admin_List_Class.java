@@ -62,12 +62,12 @@ public class Admin_List_Class extends AppCompatActivity {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // TODO Auto-generated method stub
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Getdata(edt_search_listallclass_admin.getText().toString());
+                listClass_adapter.getFilter().filter(s);
             }
         });
     }

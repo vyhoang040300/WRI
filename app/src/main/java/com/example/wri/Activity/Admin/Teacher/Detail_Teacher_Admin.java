@@ -124,7 +124,7 @@ public class Detail_Teacher_Admin extends AppCompatActivity {
                 tv_email_detailteacher.setText(teacher.getEmailUser());
                 tv_phone_detailteacher.setText(teacher.getPhoneUser());
                 tv_description_detailteacher.setText(teacher.getDescriptionTeacher());
-                Picasso.get().load(teacher.getThumbnailTeacher()).into(civProfile);
+                Picasso.with(getApplicationContext()).load(teacher.getThumbnailTeacher()).into(civProfile);
             }
 
             @Override
